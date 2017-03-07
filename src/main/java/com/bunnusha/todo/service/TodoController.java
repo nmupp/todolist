@@ -1,12 +1,15 @@
 package com.bunnusha.todo.service;
 
+import com.bunnusha.todo.business.TodoBusiness;
 import com.bunnusha.todo.domain.Todo;
-import com.bunnusha.todo.domain.TodoList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -14,14 +17,18 @@ import java.util.List;
 public class TodoController {
 
     @Autowired
-    private TodoList todoList;
+    private TodoBusiness todoBusiness;
 
     @RequestMapping
-    public TodoList todo() {
-        List<Todo> list = new LinkedList<>();
-        list.add(new Todo("Get milk today"));
-        todoList.setList(list);
-        return todoList;
+    public List<Todo> todoList() {
+        return todoBusiness.findAllTasks();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity saveTask(@RequestBody Todo todo) {
+        System.out.println(todo.toString());
+        todoBusiness.saveTask(todo);
+        return ResponseEntity.ok(todo);
     }
 
 }
