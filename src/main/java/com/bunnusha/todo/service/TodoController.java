@@ -26,7 +26,6 @@ public class TodoController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveTask(@RequestBody Todo todo) {
-        System.out.println(todo.toString());
         todoBusiness.saveTask(todo);
         return ResponseEntity.ok(todo);
     }
