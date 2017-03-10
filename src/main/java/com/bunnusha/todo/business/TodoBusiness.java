@@ -1,6 +1,6 @@
 package com.bunnusha.todo.business;
 
-import com.bunnusha.todo.dao.TodoRepository;
+import com.bunnusha.todo.repository.TodoRepository;
 import com.bunnusha.todo.domain.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

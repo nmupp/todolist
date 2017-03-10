@@ -1,4 +1,4 @@
-package com.bunnusha.todo.dao;
+package com.bunnusha.todo.repository;
 
 import com.bunnusha.todo.domain.Todo;
 import org.springframework.data.mongodb.repository.MongoRepository;
